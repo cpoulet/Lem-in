@@ -6,21 +6,15 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/02 15:01:09 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/03 17:31:42 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cpoulet.filler
-FILES = filler.c\
-		parser_filler.c\
-		jarvis.c\
-		segment.c\
-		fill_map.c\
-		insert_piece.c\
+NAME = lemin
+FILES = lemin.c\
+		parser.c\
 
-OTHER = srcs/arena.c\
-		srcs/print_arena.c\
-		srcs/win.c\
+OTHER = \
 
 SRC_PATH = srcs/
 SRC = $(addprefix srcs/,$(FILES))
@@ -29,7 +23,6 @@ OBJ = $(FILES:.c=.o)
 INCLUDES = -I includes/ -I libft/includes/
 LIBS = -L libft/ -lft
 FLAGS = -Wall -Wextra -Werror
-PPATH = resources/players/.
 
 all : $(NAME)
 
@@ -37,8 +30,7 @@ $(NAME) : $(OBJ)
 	@make -C libft/
 	@echo "Compiling libft.a... OK"
 	@gcc $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
-	@echo "Compiling cpoulet.filler... OK"
-	cp $(NAME) $(PPATH)
+	@echo "Creation de la Fourmiliere... OK"
 
 %.o : $(SRC_PATH)%.c
 	@gcc $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -60,7 +52,7 @@ show.filler : lib
 	@if [ -a resources/test ]; then echo y | rm resources/test ; fi;
 
 main : lib
-	gcc $(FLAGS) $(INCLUDES) $(SRC) main.c $(LIBS)
+	gcc  $(INCLUDES) $(SRC) $(LIBS)
 
 lib :
 	@make -C libft/

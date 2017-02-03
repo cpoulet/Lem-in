@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:52:40 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/01/26 19:10:58 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/02 17:47:22 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ typedef struct		s_gnl
 }					t_gnl;
 
 int					get_next_line(const int fd, char **line);
+int					ft_getline(const int fd, char **line);
 
 #endif

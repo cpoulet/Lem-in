@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
+/*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 09:27:00 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/03 16:54:22 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/03 17:34:56 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LEMIN_H
+# define LEMIN_H
 
-void	ft_lstaddend(t_list **alst, t_list *new)
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft.h"
+
+# define ANT1(x) "\x1B[3"x"m \\ |/ \n>C@oO\n  /| \\ \n\x1B[0m"
+# define ANT2(x) "\x1B[3"x"m  \\| / \n>C@oO\n / |\\ \n\x1B[0m"
+
+typedef struct	s_lemin
 {
-	t_list	*elem;
+	int			read;
+	int			start;
+	int			end;
+	int			room_nb;
+	int			flag;
+	char		**matrix;
+	t_list		*first;
+}				t_lemin;
 
-	if (alst && *alst)
-	{
-		elem = *alst;
-		while (elem->next)
-			elem = elem->next;
-		if (new)
-			elem->next = new;
-	}
-}
+void			parse_lemin(t_lemin *l);
+
+#endif

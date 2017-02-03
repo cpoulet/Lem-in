@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 16:19:31 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/01/22 13:54:35 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/02 17:52:58 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 # define BUFF 4096
 
+# define INIT	"\033[H\033[J"
+# define TOP	"\033[H"
 # define BLK	"\x1B[30m"
 # define RED	"\x1B[31m"
 # define GRN	"\x1B[32m"

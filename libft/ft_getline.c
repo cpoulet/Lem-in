@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
+/*   ft_getline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 09:27:00 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/03 16:54:22 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/02 17:35:32 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/02 17:47:59 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstaddend(t_list **alst, t_list *new)
+int	ft_getline(const int fd, char **line)
 {
-	t_list	*elem;
+	char	buff[2];
+	char	*tmp;
+	int		ret;
 
-	if (alst && *alst)
+	*line = ft_strnew(0);
+	while ((ret = read(fd, buff, 1)) > 0)
 	{
-		elem = *alst;
-		while (elem->next)
-			elem = elem->next;
-		if (new)
-			elem->next = new;
+		buff[1] = '\0';
+		if (*buff == '\n')
+			break ;
+		tmp = *line;
+		*line = ft_strjoin(*line, buff);
+		ft_strdel(&tmp);
 	}
+	return (ret);
 }

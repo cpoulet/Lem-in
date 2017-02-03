@@ -6,12 +6,12 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 09:56:04 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/01/26 10:06:14 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/03 15:09:00 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#define	DEC(x)	(x - (int)x)
+#define DEC(x)	(x - (int)x)
 
 int		ft_approx(double nb)
 {
