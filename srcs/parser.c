@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/03 18:18:56 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/05 19:02:47 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	fill_matrix(t_lemin *l, char *str, int n)
 	{
 		l->flag = 1;
 		l->matrix = ft_tabnew(l->room_nb, l->room_nb);
+		l->path = ft_tabnew(20, l->room_nb);///
 	}
 	if (!(i = find_lst(l, str, n)))
 		l->read = 0;
@@ -50,7 +51,10 @@ static void	fill_matrix(t_lemin *l, char *str, int n)
 		if (!(j = find_lst(l, str, n)))
 			l->read = 0;
 		else
+		{
 			l->matrix[i - 1][j - 1] = '1';
+			l->matrix[j - 1][i - 1] = '1';
+		}
 	}
 }
 

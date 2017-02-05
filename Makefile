@@ -6,13 +6,14 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/03 17:31:42 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/05 18:36:46 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lemin
 FILES = lemin.c\
 		parser.c\
+		find_path.c\
 
 OTHER = \
 
