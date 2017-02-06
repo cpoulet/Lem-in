@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/05 18:36:46 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/06 15:53:50 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME) : $(OBJ)
 	@gcc $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
 	@echo "Creation de la Fourmiliere... OK"
 
-%.o : $(SRC_PATH)%.c
+%.o : $(SRC_PATH)%.c includes/lemin.h
 	@gcc $(FLAGS) $(INCLUDES) -c $< -o $@
 
 clean :

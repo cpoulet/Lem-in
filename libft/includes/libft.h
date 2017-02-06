@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:52:40 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/02 17:47:22 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/06 12:40:26 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strnew(size_t size);
 char				**ft_tabnew(size_t height, size_t width);
 int					*ft_rangenew(size_t size);
+int					*ft_rangedup(int *range, size_t size);
 int					**ft_tab_i_new(size_t height, size_t width);
 char				*ft_strredim(char *s, size_t size);
 void				ft_strdel(char **as);

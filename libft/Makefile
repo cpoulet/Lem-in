@@ -6,7 +6,7 @@
 #    By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 09:22:13 by cpoulet           #+#    #+#              #
-#    Updated: 2017/02/02 17:46:16 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/06 12:40:40 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC =	ft_putchar.c\
 		ft_strcat.c\
 		ft_strnew.c\
 		ft_rangenew.c\
+		ft_rangedup.c\
 		ft_tabnew.c\
 		ft_tab_i_new.c\
 		ft_wcharnew.c\
