@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:46:54 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/06 16:19:19 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/07 18:21:49 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		isintab(t_lemin *l, int i)
 
 	k = -1;
 	while (++k < l->room_nb)
-		if (i == l->path[k])
+		if (i == l->tab[k])
 			return (0);
 	return (1);
 }
@@ -52,14 +52,14 @@ static void		save_path(t_lemin *l)
 	t_path	*prev;
 
 	elem = (t_path*)malloc(sizeof(t_path));
-	elem->list = ft_rangedup(l->path, l->room_nb);
-	elem->nb = count_vertex(l, elem->list);
+	elem->order = ft_rangedup(l->tab, l->room_nb);
+	elem->nb = count_vertex(l, elem->order);
 	elem->next = NULL;
 	tmp = l->paths;
 	if (tmp)
 	{
 		prev = tmp;
-		while (tmp && elem->nb > tmp->nb)
+		while (tmp && elem->nb >= tmp->nb)
 		{
 			prev = tmp;
 			tmp = tmp->next;
@@ -85,13 +85,14 @@ int		find_path(t_lemin *l, int i)
 	{
 		if (l->matrix[i][j] == '1' && isintab(l, j + 1))
 		{
-			l->path[l->y++] = j + 1;
+			l->tab[l->y++] = j + 1;
 			if (!find_path(l, j))
-				l->path[l->y--] = 0;
+				l->tab[l->y--] = 0;
 			else
 			{
 				save_path(l);
-				l->path[l->y--] = 0;
+				if (l->y-- != 1)
+					l->tab[l->y] = 0;
 				return (0);
 			}
 		}

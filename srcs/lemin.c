@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/06 16:19:14 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/07 18:09:58 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_paths(t_lemin *l)
 		k = -1;
 		ft_printf("nb = %d\t[", elem->nb);
 		while (++k < l->room_nb)	
-			ft_printf("%d,", elem->list[k]);
+			ft_printf("%d,", elem->order[k]);
 		ft_printf("]\n");
 		elem = elem->next;
 	}
@@ -86,6 +86,7 @@ static void	init_lemin(t_lemin *l)
 	l->flag = 0;
 	l->room_nb = 0;
 	l->y = 0;
+	l->ants = 0;
 }
 
 void		error(char *str)
@@ -100,14 +101,16 @@ int			main()
 	
 	init_lemin(&l);
 	parse_lemin(&l);
-	if (l.start == 0 || l.end == 0)
-		error("ERROR");
-	print_matrix(&l);
-//	print_lst(&l);
 	ft_printf("nb = %d\n", l.room_nb);
 	ft_printf("start = %d\tend = %d\n", l.start, l.end);
-	l.path[l.y++] = l.start;
+	if (l.start == 0 || l.end == 0)
+		error("ERROR_start_end");
+	print_matrix(&l);
+//	print_lst(&l);
+	l.tab[l.y++] = l.start;
 	find_path(&l, l.start - 1);
+	if (!l.paths)
+		error("ERROR_path");
 	print_paths(&l);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/06 16:19:16 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/07 18:09:51 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct	s_path
 {
 	int				nb;
-	int				*list;
+	int				*order;
 	struct s_path	*next;
 }				t_path;
 
@@ -35,13 +35,14 @@ typedef struct	s_lemin
 	int			room_nb;
 	int			flag;
 	char		**matrix;
-	int			*path;
-	int			x;
+	int			*tab;
+	int			ants;
 	int			y;
 	t_list		*first;
 	t_path		*paths;
 }				t_lemin;
 
+void			error(char *str);
 void			parse_lemin(t_lemin *l);
 void			print_paths(t_lemin *l);
 int				find_path(t_lemin *l, int i);
