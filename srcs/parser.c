@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/07 18:11:11 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 12:41:06 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void		parse_lemin(t_lemin *l)
 	l->read = 2;
 	while (ft_getline(0, &line) && l->read)
 	{
-		ft_printf("line = %s\n", line);
 		if (l->read == 2)
 			parse_ants(l, line);
 		else if (*line == '#')

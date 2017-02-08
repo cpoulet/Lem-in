@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 09:17:49 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/01/16 19:50:09 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:48:54 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_itoa_base(long long nb, int base)
 		return (NULL);
 	neg = (base == 10 && nb < 0) ? 1 : 0;
 	len = ft_nblen_b(nb, base) + neg;
-	str = (char*)malloc(sizeof(str) * (len + 1));
+	str = (char*)xmalloc(sizeof(str) * (len + 1));
 	str[len] = '\0';
 	if (!nb)
 		str[0] = '0';

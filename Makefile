@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/06 15:53:50 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/08 17:21:58 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = lemin
 FILES = lemin.c\
 		parser.c\
 		find_path.c\
+		flux.c
 
 OTHER = \
 
@@ -23,7 +24,8 @@ OBJ = $(FILES:.c=.o)
 
 INCLUDES = -I includes/ -I libft/includes/
 LIBS = -L libft/ -lft
-FLAGS = -Wall -Wextra -Werror
+PLS = -fsanitize=address
+FLAGS = -Wall -Wextra -Werror $(PLS)
 
 all : $(NAME)
 
@@ -46,14 +48,6 @@ fclean : clean
 	@make fclean -C libft/
 
 re : fclean all
-
-show.filler : lib
-	@gcc $(FLAGS) $(INCLUDES) $(LIBS) $(OTHER) -o $@
-	@mv $@ resources/.
-	@if [ -a resources/test ]; then echo y | rm resources/test ; fi;
-
-main : lib
-	gcc  $(INCLUDES) $(SRC) $(LIBS)
 
 lib :
 	@make -C libft/

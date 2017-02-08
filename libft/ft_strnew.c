@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:42:15 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/03 16:38:16 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:03:31 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char *str;
 
-	if (!(str = (char*)malloc(sizeof(*str) * (size + 1))))
-		return (NULL);
+	str = (char*)xmalloc(sizeof(*str) * (size + 1));
 	while (size != 0)
 		str[size--] = '\0';
 	str[0] = '\0';

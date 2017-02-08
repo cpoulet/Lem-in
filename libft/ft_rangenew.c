@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 11:21:03 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/01/27 13:57:40 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:03:10 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	*ft_rangenew(size_t size)
 {
 	int *range;
 
-	if (!(range = (int*)malloc(sizeof(int) * (size))))
-		return (NULL);
+	range = (int*)xmalloc(sizeof(int) * (size));
 	while (size != 0)
 		range[--size] = 0;
 	return (range);

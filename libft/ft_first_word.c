@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:25:50 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/04 12:32:07 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:57:19 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ char	*ft_first_word(const char *s, char c)
 		len++;
 	if (len == 0)
 		return (NULL);
-	if (!(str = (char*)malloc(sizeof(*str) * (len + 1))))
-		return (NULL);
+	str = (char*)xmalloc(sizeof(*str) * (len + 1));
 	str[len] = '\0';
 	str = ft_strncpy(str, s, len);
 	return (str);

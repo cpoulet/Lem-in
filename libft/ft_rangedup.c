@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 11:21:03 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/06 12:39:41 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:02:56 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	*ft_rangedup(int *range, size_t size)
 {
 	int *dup;
 
-	if (!(dup = (int*)malloc(sizeof(int) * (size))))
-		return (NULL);
+	dup = (int*)xmalloc(sizeof(int) * (size));
 	while (size-- != 0)
 		dup[size] = range[size];
 	return (dup);

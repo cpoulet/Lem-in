@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:28:04 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/03 16:05:46 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:58:35 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ char	*ft_itoa(int n)
 		nb = nb * -1;
 		len++;
 	}
-	if (!(str = (char*)malloc(sizeof(*str) * (len + 1))))
-		return (NULL);
+	str = (char*)xmalloc(sizeof(*str) * (len + 1));
 	str[len] = '\0';
 	while (len != 0)
 	{

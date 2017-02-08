@@ -6,7 +6,7 @@
 #    By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 09:22:13 by cpoulet           #+#    #+#              #
-#    Updated: 2017/02/06 12:40:40 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/08 14:38:53 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,7 @@ SRC =	ft_putchar.c\
 		str_field.c\
 		num_field.c\
 		ft_getline.c\
+		xmalloc.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -133,7 +134,7 @@ $(NAME) : $(OBJ)
 	@ar rc $@ $(OBJ)
 	@ranlib $@
 
-%.o: %.c
+%.o: %.c 
 	@gcc -o $@ -c $< $(FLAGS) -I $(HEADER)
 
 .PHONY : clean

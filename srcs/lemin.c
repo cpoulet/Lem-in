@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/07 18:09:58 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 17:06:41 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ static void	print_lst(t_lemin *l)
 }
 */
 
+void		print_room(t_lemin *l, int i)
+{
+	t_list	*elem;
+
+	if (i == 0)
+		return ;
+	elem = l->first;
+	while (--i && elem)
+		elem = elem->next;
+	ft_printf("%s", elem->content);
+}
+
 void	print_paths(t_lemin *l)
 {
 	t_path	*elem;
@@ -39,8 +51,11 @@ void	print_paths(t_lemin *l)
 	{
 		k = -1;
 		ft_printf("nb = %d\t[", elem->nb);
-		while (++k < l->room_nb)	
-			ft_printf("%d,", elem->order[k]);
+		while (++k < l->room_nb)
+		{
+			print_room(l, elem->order[k]);
+			ft_printf(",");
+		}
 		ft_printf("]\n");
 		elem = elem->next;
 	}
@@ -50,19 +65,13 @@ static void	print_matrix(t_lemin *l)
 {
 	int		i;
 	int		j;
-	int		k;
-	t_list	*elem;
 
 	i = -1;
 	ft_printf("\n");
 	while (++i < l->room_nb)
 	{
 		j = -1;
-		k = 0;
-		elem = l->first;
-		while (k++ < i)
-			elem = elem->next;
-		write(1, elem->content, elem->content_size);
+		print_room(l, i + 1);
 		write(1, "\t", 1);
 		while (++j < l->room_nb)
 		{
@@ -87,6 +96,9 @@ static void	init_lemin(t_lemin *l)
 	l->room_nb = 0;
 	l->y = 0;
 	l->ants = 0;
+	l->flux_in = 0;
+	l->flux_out = 0;
+	l->flux_max = INT_MAX;
 }
 
 void		error(char *str)
@@ -101,9 +113,13 @@ int			main()
 	
 	init_lemin(&l);
 	parse_lemin(&l);
-	ft_printf("nb = %d\n", l.room_nb);
-	ft_printf("start = %d\tend = %d\n", l.start, l.end);
-	if (l.start == 0 || l.end == 0)
+	ft_printf("nb_room = %d\n", l.room_nb);
+	ft_printf("start = ");
+	print_room(&l, l.start);
+	ft_printf("\tend = ");
+	print_room(&l, l.end);
+	ft_printf("\n");
+	if (l.start == 0 || l.end == 0)  // a deplacer direct apres les salles
 		error("ERROR_start_end");
 	print_matrix(&l);
 //	print_lst(&l);
@@ -112,5 +128,6 @@ int			main()
 	if (!l.paths)
 		error("ERROR_path");
 	print_paths(&l);
+	send_ants(&l);
 	return (0);
 }

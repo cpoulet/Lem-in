@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:43:21 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/04 13:39:14 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:04:13 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	**ft_strsplit(const char *s, char c)
 		return (NULL);
 	i = 0;
 	nb = ft_nbword(s, c);
-	if (!(str = (char**)malloc(sizeof(*str) * (nb + 1))))
-		return (NULL);
+	str = (char**)xmalloc(sizeof(*str) * (nb + 1));
 	while (*s == c)
 		s++;
 	str[i] = 0;

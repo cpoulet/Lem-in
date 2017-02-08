@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:39:07 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/04 13:53:12 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:49:18 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	if (!(str = (char*)malloc(sizeof(*str) *
+	if (!(str = (char*)xmalloc(sizeof(*str) *
 					(ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
 	ret = str;

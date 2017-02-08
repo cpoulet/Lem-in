@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 16:34:57 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/01/24 16:02:59 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:49:29 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static t_gnl	*select_struct(const int fd, t_gnl **gnl)
 		*gnl = (*gnl)->next;
 	if ((*gnl)->fd == fd)
 		return (*gnl);
-	elem = (t_gnl*)malloc(sizeof(t_gnl));
+	elem = (t_gnl*)xmalloc(sizeof(t_gnl));
 	(*gnl)->next = elem;
 	elem->fd = fd;
 	elem->start = svg;
@@ -103,7 +103,7 @@ int				get_next_line(const int fd, char **line)
 		return (-1);
 	if (!gnl)
 	{
-		gnl = (t_gnl*)malloc(sizeof(t_gnl));
+		gnl = (t_gnl*)xmalloc(sizeof(t_gnl));
 		gnl->fd = fd;
 		gnl->excess = NULL;
 		gnl->buffer = NULL;

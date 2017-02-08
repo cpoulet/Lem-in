@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:52:40 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/06 12:40:26 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/08 14:39:26 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ wchar_t				*ft_wcharnew_c(size_t size, char c);
 size_t				ft_wstrlen(const wchar_t *s);
 int					ft_max(int n, ...);
 int					ft_min(int n, ...);
+void				*xmalloc(size_t size);
 
 typedef struct		s_list
 {
