@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/08 12:41:06 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/09 12:40:35 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,15 @@ static void	parse_room(t_lemin *l, char *str)
 		l->room_nb++;
 	}
 	else
+	{
 		fill_matrix(l, str, i);
+		l->read = 3;
+	}
 }
 
 static void	parse_ants(t_lemin *l, char *str)
 {
-	l->read = 1;
+	l->read = 2;
 	l->ants = ft_atoi_skip(&str);
 	if (l->ants <= 0 || *str)
 		error("ERROR_nb_ants");
@@ -96,16 +99,16 @@ void		parse_lemin(t_lemin *l)
 {
 	char	*line;
 
-	l->read = 2;
+	l->read = 1;
 	while (ft_getline(0, &line) && l->read)
 	{
-		if (l->read == 2)
+		if (l->read == 1)
 			parse_ants(l, line);
 		else if (*line == '#')
 		{
-			if (!ft_memcmp(line, "##start\0", 8))
+			if (!ft_memcmp(line, "##start\0", 8) && l->read == 2)
 				l->start = l->room_nb + 1;
-			else if (!ft_memcmp(line, "##end\0", 6))
+			else if (!ft_memcmp(line, "##end\0", 6) && l->read == 2)
 				l->end = l->room_nb + 1;
 		}
 		else if (ft_isprint(*line) && *line != 32 &&
@@ -115,4 +118,6 @@ void		parse_lemin(t_lemin *l)
 			l->read = 0;
 		ft_strdel(&line);
 	}
+	if (!l->start || !l->end || l->start == l->end)
+		error("ERROR_start_end");
 }

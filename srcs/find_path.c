@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:46:54 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/08 18:18:38 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/09 12:12:36 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int		isintab(t_lemin *l, int i)
 			return (0);
 	return (1);
 }
+
 /*
 static void		print_path(t_lemin *l, int *rge)
 {
@@ -34,6 +35,7 @@ static void		print_path(t_lemin *l, int *rge)
 	ft_printf("]\n");
 }
 */
+
 static int		count_vertex(t_lemin *l, int *range)
 {
 	int k;
@@ -74,7 +76,7 @@ static void		save_path(t_lemin *l)
 		l->paths = elem;
 }
 
-int		find_path(t_lemin *l, int i)
+int				find_path(t_lemin *l, int i)
 {
 	int j;
 

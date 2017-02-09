@@ -6,7 +6,7 @@
 #    By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 09:22:13 by cpoulet           #+#    #+#              #
-#    Updated: 2017/02/08 14:38:53 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/09 16:29:11 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,8 @@ SRC =	ft_putchar.c\
 		str_field.c\
 		num_field.c\
 		ft_getline.c\
-		xmalloc.c
+		xmalloc.c\
+		comb_p_n.c
 
 OBJ = $(SRC:.c=.o)
 
