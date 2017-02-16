@@ -6,7 +6,7 @@
 #    By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 09:22:13 by cpoulet           #+#    #+#              #
-#    Updated: 2017/02/09 16:29:11 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/16 17:57:04 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,29 +121,45 @@ SRC =	ft_putchar.c\
 		num_field.c\
 		ft_getline.c\
 		xmalloc.c\
-		comb_p_n.c
+		init_queue.c\
+		enqueue.c\
+		dequeue.c\
+		print_queue.c\
+		comb.c\
+		comb_u.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJDIR),$(SRC:.c=.o))
+INC = includes/libft.h
 
+OBJDIR = bin/
 HEADER = includes/
 
 FLAGS = -Wall -Wextra -Werror
+
+VPATH = src/ft_printf/:src/read/:src/memory/:src/print/:src/list/:src/str/:src/check/:src/tab/:src/number/:src/algo/:src/queue/
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@ar rc $@ $(OBJ)
 	@ranlib $@
+	@echo "Libft linked [\x1B[1;31mDone\x1B[0m]"
 
-%.o: %.c 
-	@gcc -o $@ -c $< $(FLAGS) -I $(HEADER)
-
-.PHONY : clean
+$(OBJDIR)%.o: %.c $(INC)
+	@if ! [ -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi
+	@gcc -c $< $(FLAGS) -I $(HEADER) -o $@
+	@echo "Compiling [\x1B[1;32m$<\x1B[0m]\r"
 
 clean :
 	@rm -f $(OBJ)
+	@echo "\x1B[1;31mDeleting object files\x1B[0m"
+	@if [ -d $(OBJDIR) ]; then rm -rf $(OBJDIR); fi
 
 fclean : clean
 	@rm -f $(NAME)
+	@echo "\x1B[1;31mDeleting Libft.a\x1B[0m"
+	@if [ -d $(OBJDIR) ]; then rm -rf $(OBJDIR); fi
 
 re : fclean all
+
+.PHONY : clean fclean all

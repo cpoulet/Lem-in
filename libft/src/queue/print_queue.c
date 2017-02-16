@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comb_p_n.c                                         :+:      :+:    :+:   */
+/*   print_queue.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 16:09:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/09 16:31:37 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/16 15:14:42 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/16 16:57:14 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	comb(int p, int n)
+int	print_queue(t_queue *q)
 {
-	if (!p || !n)
+	int i;
+
+	if (!q)
+		return (0);
+	if (q->rear == q->front)
 	{
-		ft_printf("\n");
-		return ;
+		printf("Empty queue !\n");
+		return (1);
 	}
-	while (n)
+	printf("Front = %d\n", q->front);
+	i = q->front;
+	while (i != (q->rear + 1) % q->size)
 	{
-		ft_printf("%d ", n);
-		n--;
-		p--;
-		comb(p, n);
+		printf("%d\n", q->q[i++]);
+		i %= q->size;
 	}
+	printf("Queue = %d\n", q->rear);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:52:40 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/09 16:28:36 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/16 17:31:40 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ size_t				ft_wstrlen(const wchar_t *s);
 int					ft_max(int n, ...);
 int					ft_min(int n, ...);
 void				*xmalloc(size_t size);
-void				comb(int p, int n);
+int					comb(int p, int n);
+int					comb_u(int p, int n);
 
 typedef struct		s_list
 {
@@ -133,5 +134,18 @@ typedef struct		s_gnl
 
 int					get_next_line(const int fd, char **line);
 int					ft_getline(const int fd, char **line);
+
+typedef struct		s_queue
+{
+	int				front;
+	int				rear;
+	int				size;
+	int				*q;
+}					t_queue;
+
+int					init_queue(t_queue *q, int size, size_t content_size);
+int					enqueue(t_queue *q, int content);
+int					dequeue(t_queue *q, int *content);
+int					print_queue(t_queue *q);
 
 #endif

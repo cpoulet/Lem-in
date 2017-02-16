@@ -6,13 +6,14 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 16:27:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/09 18:11:23 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/10 11:46:59 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
-#define NUM	"0123456789"
+#include <stdlib.h>
+
 static int	intab(int *tab, int nb, int size)
 {
 	int i;
@@ -24,42 +25,27 @@ static int	intab(int *tab, int nb, int size)
 	return (0);
 }
 
-static void	print_tab(int *tab, int size)
-{
-	int i;
-
-	i = -1;
-	write(1, "[", 1);
-	while (++i < size)
-	{
-		write(1, &NUM[tab[i]], 1);
-		write(1, " ", 1);
-	}
-	write(1, "]\n", 2);
-}
-
 static int	rec(int p, int n, int *tab, int *svg, int k)
 {
 	int i;
 
 	i = 0;
-//	print_tab(tab, n);
 	if (!p)
 	{
-		printf("%d%d\n", svg[0], svg[1]);
+		while (i < k)
+			printf("%d", svg[i++]);
+		printf("\n");
 		return (0);
 	}
 	while (++i <= n)
 	{
 		if (intab(tab, i, n))
 		{
-//			write(1, &NUM[i], 1);
-//			write(1, "\n", 1);
 			svg[k] = i;
 			tab[i - 1] = 0;
 			rec(p - 1, n, tab, svg, k + 1);
+			tab[i - 1] = i;
 		}
-		tab[i - 1] = i;
 	}
 	return (0);
 }
@@ -80,8 +66,10 @@ int		comb(int p, int n)
 	return (0);
 }
 
-int	main()
+int	main(int ac, char **av)
 {
-	comb(2, 3);
+	if (ac != 3)
+		return (0);
+	comb(atoi(av[1]), atoi(av[2]));
 	return (0);
 }

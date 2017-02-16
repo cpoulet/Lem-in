@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 11:55:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/09 16:15:24 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/10 15:51:54 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	count_link(t_lemin *l, int i)
 			ret++;
 	return (ret);
 }
-
+/*
 static int	*get_path(t_path *first, int i)
 {
 	t_path	*elem;
@@ -70,12 +70,30 @@ static int	are_unique(t_lemin *l, int *p, int n)
 	return (1);
 }
 
+static void print_p(int **p, int height, int width)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < height)
+	{
+		j = -1;
+		ft_printf("[");
+		while (++j < width - 1)
+			ft_printf("%d, ", p[i][j]);
+		while (++j < width)
+			ft_printf("%d", p[i][j]);
+		ft_printf("]\n");
+	}
+}
+*/
 static int	flux_max(t_lemin *l)
 {
 	int p1;
 	int p2;
-	int	nb;
-	int	*p;
+//	int	nb;
+//	int	**p;
 
 	if (l->paths->nb == 2)
 		return (0);
@@ -90,11 +108,8 @@ static int	flux_max(t_lemin *l)
 //	}
 	ft_printf("out : %d\tin : %d\n", l->flux_out, l->flux_in);
 	ft_printf("max : %d\n", l->flux_max);
-	p = ft_rangenew(l->flux_max);
-	nb = get_nb(l->paths, p1) + get_nb(l->paths, p2) - 4;
-	p[0] = 4;
-	p[1] = 6;
-	ft_printf("are_u = %d\n", are_unique(l, p, 2));
+	ft_printf(">%d\n", comb_u(3, 5));
+//	print_p(p, 6, 2);
 	return (1);
 }
 
