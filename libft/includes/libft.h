@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 09:52:40 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/16 17:31:40 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/24 13:51:31 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,6 @@ void				*xmalloc(size_t size);
 int					comb(int p, int n);
 int					comb_u(int p, int n);
 
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-
-t_list				*ft_lstnew(const void *content, size_t content_size);
-void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_lstaddend(t_list **alst, t_list *new);
-void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-void				ft_tab_to_lst(char **tab, t_list **alst);
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-
 typedef struct		s_gnl
 {
 	int				fd;
@@ -134,18 +118,5 @@ typedef struct		s_gnl
 
 int					get_next_line(const int fd, char **line);
 int					ft_getline(const int fd, char **line);
-
-typedef struct		s_queue
-{
-	int				front;
-	int				rear;
-	int				size;
-	int				*q;
-}					t_queue;
-
-int					init_queue(t_queue *q, int size, size_t content_size);
-int					enqueue(t_queue *q, int content);
-int					dequeue(t_queue *q, int *content);
-int					print_queue(t_queue *q);
 
 #endif

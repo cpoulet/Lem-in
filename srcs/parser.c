@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/09 12:40:35 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/24 18:47:42 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static int	find_lst(t_lemin *l, char *str, int i)
 {
-	t_list	*elem;
-	int		k;
+	t_listelem	*elem;
+	int			k;
 
 	k = 1;
-	elem = l->first;
-	while (elem && ft_memcmp(str, elem->content, i))
+	elem = l->rooms->head;
+	while (elem && ft_memcmp(str, elem->data, i))
 	{
 		elem = elem->next;
 		k++;
@@ -60,7 +60,8 @@ static void	fill_matrix(t_lemin *l, char *str, int n)
 
 static void	parse_room(t_lemin *l, char *str)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (str[i] && str[i] != ' ' && str[i] != '-')
@@ -69,10 +70,8 @@ static void	parse_room(t_lemin *l, char *str)
 		l->read = 0;
 	else if (str[i] == ' ')
 	{
-		if (!l->first)
-			l->first = ft_lstnew(str, i++);
-		else
-			ft_lstaddend(&(l->first), ft_lstnew(str, i++));
+		tmp = ft_strsub(str, 0, i);
+		list_ins_next(l->rooms, l->rooms->tail, tmp);
 		str += i;
 		ft_atoi_skip(&str);
 		ft_atoi_skip(&str);
@@ -93,6 +92,7 @@ static void	parse_ants(t_lemin *l, char *str)
 	l->ants = ft_atoi_skip(&str);
 	if (l->ants <= 0 || *str)
 		error("ERROR_nb_ants");
+	list_init(l->rooms, free);
 }
 
 void		parse_lemin(t_lemin *l)

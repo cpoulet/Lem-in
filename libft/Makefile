@@ -6,7 +6,7 @@
 #    By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 09:22:13 by cpoulet           #+#    #+#              #
-#    Updated: 2017/02/16 17:57:04 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/24 16:41:43 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,15 +89,7 @@ SRC =	ft_putchar.c\
 		ft_power.c\
 		ft_u_power.c\
 		ft_strlcat.c\
-		ft_lstnew.c\
-		ft_lstadd.c\
-		ft_lstaddend.c\
-		ft_lstdel.c\
-		ft_lstdelone.c\
-		ft_lstiter.c\
-		ft_lstmap.c\
 		ft_tabdel.c\
-		ft_tab_to_lst.c\
 		ft_is_char.c\
 		ft_max.c\
 		ft_min.c\
@@ -121,10 +113,21 @@ SRC =	ft_putchar.c\
 		num_field.c\
 		ft_getline.c\
 		xmalloc.c\
-		init_queue.c\
+		list_init.c\
+		list_destroy.c\
+		list_ins_next.c\
+		list_rem_next.c\
+		dlist_init.c\
+		dlist_destroy.c\
+		dlist_ins_next.c\
+		dlist_ins_prev.c\
+		dlist_remove.c\
+		queue_init.c\
+		queue_destroy.c\
 		enqueue.c\
 		dequeue.c\
-		print_queue.c\
+		stack_push.c\
+		stack_pop.c\
 		comb.c\
 		comb_u.c
 
@@ -136,7 +139,7 @@ HEADER = includes/
 
 FLAGS = -Wall -Wextra -Werror
 
-VPATH = src/ft_printf/:src/read/:src/memory/:src/print/:src/list/:src/str/:src/check/:src/tab/:src/number/:src/algo/:src/queue/
+VPATH = src/ft_printf/:src/read/:src/memory/:src/print/:src/list/:src/str/:src/check/:src/tab/:src/number/:src/algo/:src/queue/:src/dlist/:src/stack/
 
 all : $(NAME)
 

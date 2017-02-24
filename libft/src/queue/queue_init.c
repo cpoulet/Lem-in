@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dequeue.c                                          :+:      :+:    :+:   */
+/*   queue_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:41:48 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/24 13:42:53 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 16:39:17 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 16:40:35 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "queue.h"
 
-int	dequeue(t_queue *queue, void **data)
+void	queue_init(t_queue *queue, void (*destroy)(void *data))
 {
-	return (list_rem_next(queue, NULL, data));
+	list_init(queue, destroy);
 }

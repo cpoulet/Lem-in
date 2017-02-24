@@ -5,22 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 14:27:37 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/16 17:04:00 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 13:36:24 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 13:41:41 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "queue.h"
 
-int	enqueue(t_queue *q, int content)
+int	enqueue(t_queue *queue, const void *data)
 {
-	if (!q || !content)
-		return (0);
-	if ((q->rear + 1) % q->size == q->front)
-		return (0);
-	q->front--;
-	if (q->front < 0)
-		q->front = q->size - 1;
-	q->q[q->front] = content;
-	return (1);
+	return (list_ins_next(queue, queue->tail, data));
 }

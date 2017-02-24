@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   list_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 09:30:42 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/04 13:45:12 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 11:59:48 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 13:18:58 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	list_destroy(t_list *list)
 {
-	if (f && lst)
-	{
-		while (lst->next)
-		{
-			f(lst);
-			lst = lst->next;
-		}
-		f(lst);
-	}
+	void	*data;
+
+	while (list->size)
+		if (list_rem_next(list, NULL, (void**)&data) == 0 && list->destroy)
+			list->destroy(data);
+	ft_memset(list, 0, sizeof(list));
 }

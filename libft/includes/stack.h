@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 09:27:35 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/03 09:27:38 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 13:20:53 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 14:22:58 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef STACK_H
+# define STACK_H
 
-void	ft_lstdel(t_list **alst, void (*del)(void*, size_t))
-{
-	t_list	*elem;
+# include "list.h"
+# define STACK_INIT		list_init
+# define STACK_DESTROY	list_destroy
 
-	while (*alst)
-	{
-		elem = (*alst)->next;
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = elem;
-	}
-	*alst = NULL;
-}
+typedef	t_list	t_stack;
+
+int		stack_push(t_stack *stack, const void *data);
+int		stack_pop(t_stack *stack, void **data);
+
+#endif

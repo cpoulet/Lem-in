@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/09 12:12:09 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/24 18:43:09 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void	print_lst(t_lemin *l)
 
 char		*print_room(t_lemin *l, int i)
 {
-	t_list	*elem;
+	t_listelem	*elem;
 
 	if (i == 0)
 		return (" ");
-	elem = l->first;
+	elem = l->rooms->head;
 	while (--i && elem)
 		elem = elem->next;
-	return (elem->content);
+	return (elem->data);
 }
 
 void		print_paths(t_lemin *l)
@@ -84,7 +84,7 @@ static void	print_matrix(t_lemin *l)
 
 static void	init_lemin(t_lemin *l)
 {
-	l->first = 0;
+	l->rooms = xmalloc(sizeof(t_list));
 	l->paths = 0;
 	l->read = 1;
 	l->start = 0;
@@ -111,9 +111,12 @@ int			main(void)
 	init_lemin(&l);
 	parse_lemin(&l);
 	ft_printf("nb_room = %d\n", l.room_nb);
+	ft_printf("start = %d", l.start);
+	ft_printf("\tend = %d\n", l.end);
 	ft_printf("start = %s", print_room(&l, l.start));
 	ft_printf("\tend = %s\n", print_room(&l, l.end));
 	print_matrix(&l);
+	bfs(&l);
 	l.tab[l.y++] = l.start;
 	find_path(&l, l.start - 1);
 	if (!l.paths)

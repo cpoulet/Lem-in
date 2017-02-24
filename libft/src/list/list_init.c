@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tab_to_lst.c                                    :+:      :+:    :+:   */
+/*   list_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 12:06:51 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/07 09:35:45 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 11:57:58 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 12:00:20 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list.h"
 
-void	ft_tab_to_lst(char **tab, t_list **alst)
+void	list_init(t_list *list, void (*destroy)(void *data))
 {
-	int		i;
-
-	i = 0;
-	if (tab && *tab && alst)
-	{
-		if (!*alst)
-		{
-			*alst = ft_lstnew(tab[i], ft_strlen(tab[i]) + 1);
-			i++;
-		}
-		while (tab[i++])
-			ft_lstaddend(alst, ft_lstnew(tab[i - 1],
-						ft_strlen(tab[i - 1]) + 1));
-	}
+	list->size = 0;
+	list->destroy = destroy;
+	list->head = NULL;
+	list->tail = NULL;
 }

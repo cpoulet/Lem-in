@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   list_ins_next.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 09:26:45 by cpoulet           #+#    #+#             */
-/*   Updated: 2016/11/03 09:26:51 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 12:09:37 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 15:43:07 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+int	list_ins_next(t_list *list, t_listelem *elem, const void *data)
 {
-	if (new && alst)
+	t_listelem	*new;
+
+	new = xmalloc(sizeof(t_listelem));
+	new->data = (void*)data;
+	if (!elem)
 	{
-		new->next = *alst;
-		*alst = new;
+		new->next = list->head;
+		if (list->size == 0)
+			list->tail = new;
+		list->head = new;
 	}
+	else
+	{
+		if (!elem->next)
+			list->tail = new;
+		new->next = elem->next;
+		elem->next = new;
+	}
+	list->size++;
+	return (0);
 }

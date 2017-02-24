@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/16 18:00:59 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/20 18:41:28 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = lemin
 SRC = lemin.c\
 		parser.c\
 		find_path.c\
-		flux.c
+		flux.c\
+		bfs.c
 
 OTHER = \
 
@@ -30,8 +31,7 @@ FLAGS = -Wall -Wextra -Werror $(PLS)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	@make -C libft/
+$(NAME) : lib $(OBJ)
 	@gcc $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
 	@echo "\x1B[1;31mCreation de la Fourmiliere...\x1B[0m"
 
@@ -56,6 +56,5 @@ re : fclean all
 
 lib :
 	@make -C libft/
-	@make clean -C libft/
 
 .PHONY : all clean fclean re

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_queue.c                                       :+:      :+:    :+:   */
+/*   queue.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 12:00:55 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/16 16:49:50 by cpoulet          ###   ########.fr       */
+/*   Created: 2017/02/24 13:31:07 by cpoulet           #+#    #+#             */
+/*   Updated: 2017/02/24 16:39:01 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef QUEUE_H
+# define QUEUE_H
 
-int	init_queue(t_queue *q, int size, size_t content_size)
-{
-	if (!q)
-		return (0);
-	q->front = 0;
-	q->rear = 0;
-	q->size = size;
-	q->q = xmalloc(content_size * size);
-	return (1);
-}
+# include "list.h"
+
+typedef t_list	t_queue;
+
+int		enqueue(t_queue *queue, const void *data);
+int		dequeue(t_queue *queue, void **data);
+void	queue_init(t_queue *queue, void (*destroy)(void *data));
+void	queue_destroy(t_queue *queue);
+
+#endif
