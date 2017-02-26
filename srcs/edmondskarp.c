@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/26 18:19:35 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/26 18:59:36 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	edmondskarp(t_lemin *l)
 			ek.flow[v][u]--;
 			v = u;
 		}
-	}
 	printf("flux = %d\n", ek.flux);
 	print_flux(l, &ek, l->start - 1);
+	}
 }
