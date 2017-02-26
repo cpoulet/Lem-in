@@ -6,16 +6,14 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/20 18:41:28 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/02/26 18:10:03 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lemin
 SRC = lemin.c\
 		parser.c\
-		find_path.c\
-		flux.c\
-		bfs.c
+		edmondskarp.c
 
 OTHER = \
 

@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:46:54 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/20 19:28:36 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/26 17:08:25 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				find_path(t_lemin *l, int i)
 		return (1);
 	while (++j < l->room_nb)
 	{
-		if (l->matrix[i][j] == '1' && isintab(l, j + 1))
+		if (l->matrix[i][j] == 1 && isintab(l, j + 1))
 		{
 			l->tab[l->y++] = j + 1;
 			if (!find_path(l, j))
