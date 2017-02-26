@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/24 18:43:09 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/26 18:10:17 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	print_matrix(t_lemin *l)
 		ft_printf("%s\t", print_room(l, i + 1));
 		while (++j < l->room_nb)
 		{
-			if (l->matrix[i][j] == '1')
+			if (l->matrix[i][j] == 1)
 				ft_printf(GRN"1 "EOC);
 			else
 				ft_printf("0 ");
@@ -116,12 +116,6 @@ int			main(void)
 	ft_printf("start = %s", print_room(&l, l.start));
 	ft_printf("\tend = %s\n", print_room(&l, l.end));
 	print_matrix(&l);
-	bfs(&l);
-	l.tab[l.y++] = l.start;
-	find_path(&l, l.start - 1);
-	if (!l.paths)
-		error("ERROR_path");
-	print_paths(&l);
-	send_ants(&l);
+	edmondskarp(&l);
 	return (0);
 }

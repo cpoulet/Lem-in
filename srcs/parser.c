@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/24 18:47:42 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/26 17:07:17 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	fill_matrix(t_lemin *l, char *str, int n)
 			l->read = 0;
 		else
 		{
-			l->matrix[i - 1][j - 1] = '1';
-			l->matrix[j - 1][i - 1] = '1';
+			l->matrix[i - 1][j - 1] = 1;
+			l->matrix[j - 1][i - 1] = 1;
 		}
 	}
 }

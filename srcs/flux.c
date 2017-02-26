@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 11:55:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/10 15:51:54 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/26 17:08:03 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	count_link(t_lemin *l, int i)
 	ret = 0;
 	nb = l->room_nb;
 	while (nb--)
-		if (l->matrix[i][nb] == '1')
+		if (l->matrix[i][nb] == 1)
 			ret++;
 	return (ret);
 }

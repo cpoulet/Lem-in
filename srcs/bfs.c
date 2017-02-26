@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 11:36:06 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/25 16:56:35 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/26 17:08:51 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ void	procede(t_lemin *l, t_bfs *b, int k)
 	i = -1;
 	len = 0;
 	while (++i < l->room_nb)
-		if (l->matrix[k][i] == '1' && b->proc[i] == 0)
+		if (l->matrix[k][i] == 1 && b->proc[i] == 0)
 			len++;
 	i = -1;
 	while (++i < l->room_nb)
 	{
-		if (l->matrix[k][i] == '1' && b->proc[i] == 0)
+		if (l->matrix[k][i] == 1 && b->proc[i] == 0)
 		{
 			if (k != l->start - 1)
 			{
