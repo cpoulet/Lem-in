@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/26 18:10:17 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/28 15:34:30 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*print_room(t_lemin *l, int i)
 		elem = elem->next;
 	return (elem->data);
 }
-
+/*
 void		print_paths(t_lemin *l)
 {
 	t_path	*elem;
@@ -58,7 +58,7 @@ void		print_paths(t_lemin *l)
 		elem = elem->next;
 	}
 }
-
+*/
 static void	print_matrix(t_lemin *l)
 {
 	int		i;

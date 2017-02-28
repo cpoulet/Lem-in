@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/26 19:01:43 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/28 15:34:49 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_ek(t_lemin *l, t_ek *ek)
 	ek->queue = xmalloc(sizeof(t_queue));
 	queue_init(ek->queue, free);
 	ek->flux = 0;
+	ek->first = NULL;
 }
 
 void	init_bfs_ek(t_lemin *l, t_ek *ek)
@@ -71,7 +72,7 @@ int		bfs_ek(t_lemin *l, t_ek *ek)
 	return (0);
 }
 
-void	print_flux(t_lemin *l, t_ek *ek, int start)
+void	print_flux(t_lemin *l, t_ek *ek, int start, t_flux *elem)
 {
 	int		v;
 
@@ -86,9 +87,31 @@ void	print_flux(t_lemin *l, t_ek *ek, int start)
 		if (ek->flow[start][v] > 0)
 		{
 			printf("%d ", start + 1);
-			print_flux(l, ek, v);
+			print_flux(l, ek, v, elem);
 		}
 	}
+	(void)elem;
+}
+
+t_flux	*addflux(t_ek *e, int len)
+{
+	t_flux	*new;
+	t_flux	*elem;
+
+	new = xmalloc(sizeof(*new));
+	new->flux = len;
+	new->path = NULL;
+	new->next = NULL;
+	elem = e->first;
+	if (e->first)
+	{
+		while (elem->next)
+			elem = elem->next;
+		elem->next = new;
+	}
+	else
+		new = e->first;
+	return (new);
 }
 
 void	edmondskarp(t_lemin *l)
@@ -96,6 +119,7 @@ void	edmondskarp(t_lemin *l)
 	t_ek	ek;
 	int		u;
 	int		v;
+	t_flux	*elem;
 
 	init_ek(l, &ek);
 	while (bfs_ek(l, &ek))
@@ -109,7 +133,8 @@ void	edmondskarp(t_lemin *l)
 			ek.flow[v][u]--;
 			v = u;
 		}
+	elem = addflux(&ek, ek.flux);
 	printf("flux = %d\n", ek.flux);
-	print_flux(l, &ek, l->start - 1);
+	print_flux(l, &ek, l->start - 1, elem);
 	}
 }
