@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/28 15:34:49 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/28 19:37:26 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,49 @@ int		bfs_ek(t_lemin *l, t_ek *ek)
 	return (0);
 }
 
-void	print_flux(t_lemin *l, t_ek *ek, int start, t_flux *elem)
+void	addroom(t_path *p, int id)
+{
+	t_room	*new;
+	t_room	*tmp;
+
+	new = xmalloc(sizeof(*new));
+	p->len++;
+	new->id = id;
+	new->next = NULL;
+	if (p->first)
+	{
+		tmp = p->first;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	else
+		p->first = new;
+}
+
+void	addpath(t_path *p)
+{
+	t_path	*new;
+
+	new = xmalloc(sizeof(*new));
+	new->len = 0;
+	new->next = NULL;
+	while (p->next)
+		p = p->next;
+	p->next = new;
+}
+
+void	print_flux(t_lemin *l, t_ek *ek, int start, t_path *p)
 {
 	int		v;
 
 	v = -1;
+	while (p->next)
+		p = p->next;
 	if (start == l->end - 1)
 	{
+		addroom(p, start);
+		addpath(p);
 		printf("0\n");
 		return ;
 	}
@@ -86,32 +122,34 @@ void	print_flux(t_lemin *l, t_ek *ek, int start, t_flux *elem)
 	{
 		if (ek->flow[start][v] > 0)
 		{
+			addroom(p, start);
 			printf("%d ", start + 1);
-			print_flux(l, ek, v, elem);
+			print_flux(l, ek, v, p);
 		}
 	}
-	(void)elem;
 }
 
-t_flux	*addflux(t_ek *e, int len)
+void	addflux(t_ek *e, int len)
 {
 	t_flux	*new;
 	t_flux	*elem;
 
 	new = xmalloc(sizeof(*new));
 	new->flux = len;
-	new->path = NULL;
+	new->path = xmalloc(sizeof(t_path));
+	new->path->len = 0;
+	new->path->first = NULL;
+	new->path->next = NULL;
 	new->next = NULL;
-	elem = e->first;
 	if (e->first)
 	{
+		elem = e->first;
 		while (elem->next)
 			elem = elem->next;
 		elem->next = new;
 	}
 	else
-		new = e->first;
-	return (new);
+		e->first = new;
 }
 
 void	edmondskarp(t_lemin *l)
@@ -119,7 +157,6 @@ void	edmondskarp(t_lemin *l)
 	t_ek	ek;
 	int		u;
 	int		v;
-	t_flux	*elem;
 
 	init_ek(l, &ek);
 	while (bfs_ek(l, &ek))
@@ -133,8 +170,8 @@ void	edmondskarp(t_lemin *l)
 			ek.flow[v][u]--;
 			v = u;
 		}
-	elem = addflux(&ek, ek.flux);
+	addflux(&ek, ek.flux);
 	printf("flux = %d\n", ek.flux);
-	print_flux(l, &ek, l->start - 1, elem);
+	print_flux(l, &ek, l->start - 1, ek.first->path);
 	}
 }

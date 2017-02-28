@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/28 15:34:33 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/02/28 18:24:00 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_room
 
 typedef struct	s_path
 {
-	int				nb;
+	int				len;
 	t_room			*first;
 	struct s_path	*next;
 }				t_path;
@@ -39,7 +39,7 @@ typedef struct	s_path
 typedef struct	s_flux
 {
 	int				flux;
-	t_room			*path;
+	t_path			*path;
 	struct s_flux	*next;
 }				t_flux;
 
