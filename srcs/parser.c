@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/26 17:07:17 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/01 12:45:44 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,7 @@ void		parse_lemin(t_lemin *l)
 		ft_strdel(&line);
 	}
 	if (!l->start || !l->end || l->start == l->end)
-		error("ERROR_start_end");
+		error("ERROR_parsing");
+	if (!l->flag)
+		error("ERROR_no_edge");
 }

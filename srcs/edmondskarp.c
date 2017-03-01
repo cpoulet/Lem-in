@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/28 19:37:26 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/01 12:31:13 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,37 +99,40 @@ void	addpath(t_path *p)
 	new = xmalloc(sizeof(*new));
 	new->len = 0;
 	new->next = NULL;
+	new->first = NULL;
 	while (p->next)
 		p = p->next;
 	p->next = new;
 }
 
-void	print_flux(t_lemin *l, t_ek *ek, int start, t_path *p)
+void	print_flux(t_lemin *l, t_ek *ek, int start, t_path *p, int k)
 {
 	int		v;
 
 	v = -1;
-	while (p->next)
-		p = p->next;
 	if (start == l->end - 1)
 	{
 		addroom(p, start);
-		addpath(p);
+		k--;
+		if (k)
+			addpath(p);
 		printf("0\n");
 		return ;
 	}
 	while (++v < l->room_nb)
 	{
+		while (p->next)
+			p = p->next;
 		if (ek->flow[start][v] > 0)
 		{
 			addroom(p, start);
 			printf("%d ", start + 1);
-			print_flux(l, ek, v, p);
+			print_flux(l, ek, v, p, k);
 		}
 	}
 }
 
-void	addflux(t_ek *e, int len)
+t_flux	*addflux(t_ek *e, int len)
 {
 	t_flux	*new;
 	t_flux	*elem;
@@ -150,6 +153,36 @@ void	addflux(t_ek *e, int len)
 	}
 	else
 		e->first = new;
+	return (new);
+}
+
+void	printdata(t_ek *e)
+{
+	t_flux	*flux;
+	t_path	*path;
+	t_room	*room;
+
+	flux = e->first;
+	while (flux)
+	{
+		printf("nbflux = %d\t", flux->flux);
+		path = flux->path;
+		while (path)
+		{
+			printf("path_len = %d\t", path->len);
+			room = path->first;
+			while (room)
+			{
+				printf("room_id = %d ", room->id + 1);
+				room = room->next;
+			}
+			path = path->next;
+			printf("\n");
+		}
+		flux = flux->next;
+		printf("\n");
+	}
+	printf("\n");
 }
 
 void	edmondskarp(t_lemin *l)
@@ -157,6 +190,7 @@ void	edmondskarp(t_lemin *l)
 	t_ek	ek;
 	int		u;
 	int		v;
+	t_flux	*flux;
 
 	init_ek(l, &ek);
 	while (bfs_ek(l, &ek))
@@ -170,8 +204,9 @@ void	edmondskarp(t_lemin *l)
 			ek.flow[v][u]--;
 			v = u;
 		}
-	addflux(&ek, ek.flux);
-	printf("flux = %d\n", ek.flux);
-	print_flux(l, &ek, l->start - 1, ek.first->path);
+	flux = addflux(&ek, ek.flux);
+	printf("nb flux = %d\n", ek.flux);
+	print_flux(l, &ek, l->start - 1, flux->path, flux->flux);
+	//printdata(&ek);
 	}
 }

@@ -6,11 +6,11 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/02/26 18:10:03 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/01 12:36:10 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lemin
+NAME = lem-in
 SRC = lemin.c\
 		parser.c\
 		edmondskarp.c
