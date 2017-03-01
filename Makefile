@@ -6,14 +6,15 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/01 12:36:10 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/01 12:57:11 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-SRC = lemin.c\
+SRC =	lemin.c\
 		parser.c\
-		edmondskarp.c
+		edmondskarp.c\
+		data_save.c
 
 OTHER = \
 

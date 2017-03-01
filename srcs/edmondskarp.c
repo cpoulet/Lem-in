@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/01 12:31:13 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/01 13:07:40 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_ek(t_lemin *l, t_ek *ek)
 	ek->queue = xmalloc(sizeof(t_queue));
 	queue_init(ek->queue, free);
 	ek->flux = 0;
+	ek->nb = l->room_nb;
+	ek->end = l->end;
 	ek->first = NULL;
 }
 
@@ -37,7 +39,7 @@ void	init_bfs_ek(t_lemin *l, t_ek *ek)
 	enqueue(ek->queue, nb);
 }
 
-void	enqueue_int(t_queue *q, int	k)
+void	enqueue_int(t_queue *q, int k)
 {
 	int	*new;
 
@@ -72,90 +74,6 @@ int		bfs_ek(t_lemin *l, t_ek *ek)
 	return (0);
 }
 
-void	addroom(t_path *p, int id)
-{
-	t_room	*new;
-	t_room	*tmp;
-
-	new = xmalloc(sizeof(*new));
-	p->len++;
-	new->id = id;
-	new->next = NULL;
-	if (p->first)
-	{
-		tmp = p->first;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	else
-		p->first = new;
-}
-
-void	addpath(t_path *p)
-{
-	t_path	*new;
-
-	new = xmalloc(sizeof(*new));
-	new->len = 0;
-	new->next = NULL;
-	new->first = NULL;
-	while (p->next)
-		p = p->next;
-	p->next = new;
-}
-
-void	print_flux(t_lemin *l, t_ek *ek, int start, t_path *p, int k)
-{
-	int		v;
-
-	v = -1;
-	if (start == l->end - 1)
-	{
-		addroom(p, start);
-		k--;
-		if (k)
-			addpath(p);
-		printf("0\n");
-		return ;
-	}
-	while (++v < l->room_nb)
-	{
-		while (p->next)
-			p = p->next;
-		if (ek->flow[start][v] > 0)
-		{
-			addroom(p, start);
-			printf("%d ", start + 1);
-			print_flux(l, ek, v, p, k);
-		}
-	}
-}
-
-t_flux	*addflux(t_ek *e, int len)
-{
-	t_flux	*new;
-	t_flux	*elem;
-
-	new = xmalloc(sizeof(*new));
-	new->flux = len;
-	new->path = xmalloc(sizeof(t_path));
-	new->path->len = 0;
-	new->path->first = NULL;
-	new->path->next = NULL;
-	new->next = NULL;
-	if (e->first)
-	{
-		elem = e->first;
-		while (elem->next)
-			elem = elem->next;
-		elem->next = new;
-	}
-	else
-		e->first = new;
-	return (new);
-}
-
 void	printdata(t_ek *e)
 {
 	t_flux	*flux;
@@ -165,7 +83,7 @@ void	printdata(t_ek *e)
 	flux = e->first;
 	while (flux)
 	{
-		printf("nbflux = %d\t", flux->flux);
+		printf("nbflux = %d :\n", flux->flux);
 		path = flux->path;
 		while (path)
 		{
@@ -204,9 +122,9 @@ void	edmondskarp(t_lemin *l)
 			ek.flow[v][u]--;
 			v = u;
 		}
-	flux = addflux(&ek, ek.flux);
-	printf("nb flux = %d\n", ek.flux);
-	print_flux(l, &ek, l->start - 1, flux->path, flux->flux);
-	//printdata(&ek);
+		flux = addflux(&ek, ek.flux);
+		printf("data sent = %d\n", flux->flux);
+		save_flux(&ek, l->start - 1, flux->path, flux->flux);
 	}
+	printdata(&ek);
 }

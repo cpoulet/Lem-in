@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/28 15:34:30 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/01 13:07:00 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,7 @@ static void	init_lemin(t_lemin *l)
 	l->end = 0;
 	l->flag = 0;
 	l->room_nb = 0;
-	l->y = 0;
 	l->ants = 0;
-	l->flux_in = 0;
-	l->flux_out = 0;
-	l->flux_max = INT_MAX;
 }
 
 void		error(char *str)

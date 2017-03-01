@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/01 11:47:52 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/01 13:06:40 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct	s_ek
 {
 	char		**flow;
 	int			flux;
+	int			nb;
+	int			end;
 	t_queue		*queue;
 	int			*par;
 	t_flux		*first;
@@ -63,10 +65,6 @@ typedef struct	s_lemin
 	char		**svg;
 	int			*tab;
 	int			ants;
-	int			flux_out;
-	int			flux_in;
-	int			flux_max;
-	int			y;
 	t_list		*rooms;
 	t_path		*paths;
 }				t_lemin;
@@ -77,5 +75,7 @@ void			print_paths(t_lemin *l);
 char			*print_room(t_lemin *l, int i);
 void			send_ants(t_lemin *l);
 void			edmondskarp(t_lemin *l);
+void			save_flux(t_ek *ek, int start, t_path *p, int k);
+t_flux			*addflux(t_ek *e, int len);
 
 #endif
