@@ -6,115 +6,125 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 11:55:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/02/26 17:08:03 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/06 18:33:40 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int	count_link(t_lemin *l, int i)
-{
-	int nb;
-	int ret;
-
-	ret = 0;
-	nb = l->room_nb;
-	while (nb--)
-		if (l->matrix[i][nb] == 1)
-			ret++;
-	return (ret);
-}
-/*
-static int	*get_path(t_path *first, int i)
+int		tmp_calculate(t_lemin *l, t_flux *flux)
 {
 	t_path	*elem;
+	int		tmp;
+	int		rest;
 
-	elem = first;
-	while (elem && --i)
-		elem = elem->next;
-	return (elem->order);
+	elem = flux->path;
+	flux->min = elem->len;
+	while ((elem = elem->next))
+		flux->min = elem->len < flux->min ? elem->len : flux->min;
+	elem = flux->path;
+	rest = elem->len - flux->min;
+	while ((elem = elem->next))
+		rest += elem->len - flux->min;
+	tmp = flux->min - 2 + l->ants / flux->flux;
+	tmp += (l->ants % flux->flux + rest) / flux->flux;
+	tmp += (l->ants % flux->flux + rest) % flux->flux;
+	return (tmp);
 }
 
-static int	get_nb(t_path *first, int i)
+int		flux_max(t_lemin *l)
 {
-	t_path	*elem;
+	int		tmp;
+	int		n;
+	int		value;
+	t_flux	*flux;
 
-	elem = first;
-	while (elem && --i)
-		elem = elem->next;
-	return (elem->nb);
-}
-
-static int	are_unique(t_lemin *l, int *p, int n)
-{
-	int		ret;
-	int		*tmp;
-	int		max;
-	int		i;
-
-	if (n == 0)
-		return (0);
-	tmp = ft_rangenew(l->room_nb);
-	while (n--)
+	flux = l->paths;
+	n = 1;
+	while (flux)
 	{
-		ret = 0;
-		max = get_nb(l->paths, p[n]) - 1;
-		while (++ret < max)
+		if (flux->flux == 1)
+			tmp = l->ants + flux->path->len - 2;
+		else
 		{
-			i = get_path(l->paths, p[n])[ret];
-			tmp[i]++;
-			if (tmp[i] >= 2)
-				return (0);
+			value = tmp_calculate(l, flux);
+			if (value < tmp)
+			{
+				n = flux->flux;
+				tmp = value;
+			}
 		}
+		flux = flux->next;
 	}
-	return (1);
+	return (n);
 }
 
-static void print_p(int **p, int height, int width)
+void	move_ant(t_room *r, int n)
 {
-	int i;
-	int j;
+	int	next;
 
-	i = -1;
-	while (++i < height)
+	if (!r)
+		return ;
+	next = r->ant;
+	r->ant = n;
+	move_ant(r->next, next);
+}
+
+int		print_out(t_path *p, t_lemin *l)
+{
+	t_room	*r;
+	int		flag;
+
+	flag = 0;
+	while (p)
 	{
-		j = -1;
-		ft_printf("[");
-		while (++j < width - 1)
-			ft_printf("%d, ", p[i][j]);
-		while (++j < width)
-			ft_printf("%d", p[i][j]);
-		ft_printf("]\n");
+		r = p->first;
+		while ((r = r->next))
+		{
+			if (r->ant >= 0)
+			{
+				ft_printf("L%d-%s ", r->ant, print_room(l, r->id + 1));
+				flag = 1;
+			}
+		}
+		p = p->next;
+	}
+	write(1, "\n", 1);
+	return (flag);
+}
+
+void	gogogo(t_lemin *l, t_flux *f)
+{
+	t_path	*path;
+	int		ants;
+	int		n;
+
+	n = 1;
+	ants = 1;
+	while (n)
+	{
+		path = f->path;
+		while (path)
+		{
+			if (ants > l->ants)
+				move_ant(path->first->next, -1);
+			else if (f->min == path->len)
+				move_ant(path->first->next, ants++);
+			else if (path->len - f->min > l->ants - ants)
+				move_ant(path->first->next, ants++);
+			path = path->next;
+		}
+		n = print_out(f->path, l);
 	}
 }
-*/
-static int	flux_max(t_lemin *l)
-{
-	int p1;
-	int p2;
-//	int	nb;
-//	int	**p;
 
-	if (l->paths->nb == 2)
-		return (0);
-	p1 = 1;
-	p2 = 2;
-	l->flux_out = count_link(l, l->start - 1);
-	l->flux_in = count_link(l, l->end - 1);
-	l->flux_max = ft_min(3, l->flux_max, l->flux_out, l->flux_in);
-//	while (nb <= l->room_nb - 2)
-//	{
-//		nb = get_nb(l->paths, p1) + get_nb(l->paths, p2) - 4;
-//	}
-	ft_printf("out : %d\tin : %d\n", l->flux_out, l->flux_in);
-	ft_printf("max : %d\n", l->flux_max);
-	ft_printf(">%d\n", comb_u(3, 5));
-//	print_p(p, 6, 2);
-	return (1);
-}
-
-void		send_ants(t_lemin *l)
+void	send_ants(t_lemin *l)
 {
-	if (!flux_max(l))
-		l->flux_max = 0;
+	t_flux	*flux;
+
+	flux_max(l);
+	flux = l->paths;
+	while (flux->next)
+		flux = flux->next;
+	gogogo(l, flux);
 }

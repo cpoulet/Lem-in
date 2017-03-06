@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/01 12:57:11 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/06 11:26:07 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = lem-in
 SRC =	lemin.c\
 		parser.c\
 		edmondskarp.c\
-		data_save.c
+		data_save.c\
+		flux.c
 
 OTHER = \
 

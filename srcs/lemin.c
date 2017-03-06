@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/01 13:07:00 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/06 16:27:10 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char		*print_room(t_lemin *l, int i)
 		elem = elem->next;
 	return (elem->data);
 }
+
 /*
 void		print_paths(t_lemin *l)
 {
@@ -58,8 +59,8 @@ void		print_paths(t_lemin *l)
 		elem = elem->next;
 	}
 }
-*/
-static void	print_matrix(t_lemin *l)
+
+void		print_matrix(t_lemin *l)
 {
 	int		i;
 	int		j;
@@ -72,7 +73,9 @@ static void	print_matrix(t_lemin *l)
 		ft_printf("%s\t", print_room(l, i + 1));
 		while (++j < l->room_nb)
 		{
-			if (l->matrix[i][j] == 1)
+			if (i == j)
+				ft_printf("\\ ");
+			else if (l->matrix[i][j] == 1)
 				ft_printf(GRN"1 "EOC);
 			else
 				ft_printf("0 ");
@@ -81,8 +84,9 @@ static void	print_matrix(t_lemin *l)
 	}
 	ft_printf("\n");
 }
+*/
 
-static void	init_lemin(t_lemin *l)
+void		init_lemin(t_lemin *l)
 {
 	l->rooms = xmalloc(sizeof(t_list));
 	l->paths = 0;
@@ -106,12 +110,15 @@ int			main(void)
 
 	init_lemin(&l);
 	parse_lemin(&l);
-	ft_printf("nb_room = %d\n", l.room_nb);
+/*	ft_printf("nb_room = %d\n", l.room_nb);
 	ft_printf("start = %d", l.start);
 	ft_printf("\tend = %d\n", l.end);
 	ft_printf("start = %s", print_room(&l, l.start));
 	ft_printf("\tend = %s\n", print_room(&l, l.end));
 	print_matrix(&l);
-	edmondskarp(&l);
+*/	edmondskarp(&l);
+	if (!l.paths)
+		error("No valid paths !\n");
+	send_ants(&l);
 	return (0);
 }

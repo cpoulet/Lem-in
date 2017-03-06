@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/01 12:45:44 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/06 16:30:53 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void		parse_lemin(t_lemin *l)
 	l->read = 1;
 	while (ft_getline(0, &line) && l->read)
 	{
+		ft_printf("%s\n", line);
 		if (l->read == 1)
 			parse_ants(l, line);
 		else if (*line == '#')
@@ -118,8 +119,6 @@ void		parse_lemin(t_lemin *l)
 			l->read = 0;
 		ft_strdel(&line);
 	}
-	if (!l->start || !l->end || l->start == l->end)
+	if (!l->start || !l->end || l->start == l->end || !l->flag)
 		error("ERROR_parsing");
-	if (!l->flag)
-		error("ERROR_no_edge");
 }

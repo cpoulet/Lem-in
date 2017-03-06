@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:52:01 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/01 13:08:30 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/06 16:50:02 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	addroom(t_path *p, int id)
 	new = xmalloc(sizeof(*new));
 	p->len++;
 	new->id = id;
+	new->ant = -1;
 	new->next = NULL;
 	if (p->first)
 	{
@@ -45,7 +46,7 @@ void	addpath(t_path *p)
 	p->next = new;
 }
 
-void	save_flux(t_ek *ek, int start, t_path *p, int k)
+void	save_flux(t_ek *ek, int start, t_path *p)
 {
 	int		v;
 
@@ -53,8 +54,7 @@ void	save_flux(t_ek *ek, int start, t_path *p, int k)
 	if (start == ek->end - 1)
 	{
 		addroom(p, start);
-		k--;
-		if (k)
+		if (--ek->depth)
 			addpath(p);
 		return ;
 	}
@@ -65,7 +65,7 @@ void	save_flux(t_ek *ek, int start, t_path *p, int k)
 		if (ek->flow[start][v] > 0)
 		{
 			addroom(p, start);
-			save_flux(ek, v, p, k);
+			save_flux(ek, v, p);
 		}
 	}
 }
