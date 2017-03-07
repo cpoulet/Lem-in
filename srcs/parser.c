@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 14:52:16 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 15:34:07 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,12 @@ static void	parse_room(t_lemin *l, char *str)
 	}
 }
 
-static void	parse_ants(t_lemin *l, char *str)
+void		parse_ants(t_lemin *l, char *str)
 {
 	l->read = 2;
 	l->ants = ft_atoi_skip(&str);
 	if (l->ants <= 0 || *str)
 	{
-		free(str);
 		write(1, "ERROR\n", 6);
 		exit(1);
 	}
