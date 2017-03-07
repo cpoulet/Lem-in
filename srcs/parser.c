@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 15:34:07 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 16:12:48 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	fill_matrix(t_lemin *l, char *str, int n)
 		{
 			l->matrix[i - 1][j - 1] = 1;
 			l->matrix[j - 1][i - 1] = 1;
+			l->read = 3;
 		}
 	}
 }
@@ -79,10 +80,7 @@ static void	parse_room(t_lemin *l, char *str)
 		l->room_nb++;
 	}
 	else
-	{
 		fill_matrix(l, str, i);
-		l->read = 3;
-	}
 }
 
 void		parse_ants(t_lemin *l, char *str)

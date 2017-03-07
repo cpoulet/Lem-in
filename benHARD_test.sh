@@ -7,18 +7,18 @@ INT_MAX="2147483647"
 INT_MIN="-2147483648"
 
 lm_test() { 
-	echo -e "\n$YEL"$1"$RES";
-	echo -e $2 | ./lem-in; 
+	echo "\n$YEL"$1"$RES";
+	echo $2 | ./lem-in; 
 }
 
 display_title() {
-	echo -e "\n=============================="
-	echo -e "== $GREEN""  Lem_in parsing tests$RES   =="
-	echo -e "==============================\n"
+	echo "\n=============================="
+	echo "== $GREEN""  Lem_in parsing tests$RES   =="
+	echo "==============================\n"
 }
 
 ants_parsing() {
-	echo -e "$GREEN""ANTS PARSING$RES"
+	echo "$GREEN""ANTS PARSING$RES"
 
 	lm_test  \
 		"Test 00: 0 ants" \
@@ -32,7 +32,7 @@ ants_parsing() {
 }
 
 rooms_parsing() {
-	echo -e "$GREEN""\nROOMS PARSING$RES"
+	echo "$GREEN""\nROOMS PARSING$RES"
 
 	lm_test  \
 		"Test 00: 10 ants, no room" \
@@ -68,7 +68,7 @@ rooms_parsing() {
 }
 
 edges_parsing() {
-	echo -e "$GREEN""\nEDGES PARSING$RES"
+	echo "$GREEN""\nEDGES PARSING$RES"
 
 	lm_test  \
 		"Test 00: no edges" \
@@ -85,6 +85,9 @@ edges_parsing() {
 	lm_test  \
 		"Test 04: circular edge roomA-roomA" \
 		"10\n#comment\n##start\nr1 4 3\nr3 0 9\n##end\nr2 4 99\nr1-r1\nr2-r3\nr3-r1"
+	lm_test  \
+		"Test 05: non-existing room in edge" \
+		"10\n#comment\n##start\nr1 4 3\nr3 0 9\n##end\nr2 4 99\nr2-r3\nr2-r9\nr3-r1"
 	# tirets "-" "- -" "--"
 }
 
