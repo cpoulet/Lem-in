@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:52:01 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/06 16:50:02 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 12:02:48 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_flux	*addflux(t_ek *e, int len)
 
 	new = xmalloc(sizeof(*new));
 	new->flux = len;
+	new->round = 0;
 	new->path = xmalloc(sizeof(t_path));
 	new->path->len = 0;
 	new->path->first = NULL;

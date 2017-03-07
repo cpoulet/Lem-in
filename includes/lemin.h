@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/06 16:50:21 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 12:01:44 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_flux
 {
 	int				flux;
 	int				min;
+	int				round;
 	t_path			*path;
 	struct s_flux	*next;
 }				t_flux;
@@ -68,6 +69,8 @@ typedef struct	s_lemin
 	char		**svg;
 	int			*tab;
 	int			ants;
+	t_flux		*flux;
+	int			round;
 	t_list		*rooms;
 	t_flux		*paths;
 }				t_lemin;

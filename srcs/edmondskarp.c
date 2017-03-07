@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/06 16:19:06 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 12:29:59 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,35 +74,6 @@ int		bfs_ek(t_lemin *l, t_ek *ek)
 	return (0);
 }
 
-void	printdata(t_ek *e, t_lemin *l)
-{
-	t_flux	*flux;
-	t_path	*path;
-	t_room	*room;
-
-	flux = e->first;
-	while (flux)
-	{
-		printf("nbflux = %d :\n", flux->flux);
-		path = flux->path;
-		while (path)
-		{
-			printf("path_len = %d\t", path->len);
-			room = path->first;
-			while (room)
-			{
-				printf("%s\t", print_room(l, room->id + 1));
-				room = room->next;
-			}
-			path = path->next;
-			printf("\n");
-		}
-		flux = flux->next;
-		printf("\n");
-	}
-	printf("\n");
-}
-
 void	edmondskarp(t_lemin *l)
 {
 	t_ek	ek;
@@ -127,5 +98,4 @@ void	edmondskarp(t_lemin *l)
 		save_flux(&ek, l->start - 1, flux->path);
 	}
 	l->paths = ek.first;
-	printdata(&ek, l);
 }
