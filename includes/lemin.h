@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 12:01:44 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 15:26:39 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ typedef struct	s_lemin
 	int			room_nb;
 	int			flag;
 	char		**matrix;
-	char		**svg;
-	int			*tab;
 	int			ants;
-	t_flux		*flux;
 	int			round;
+	t_flux		*flux_to_print;
 	t_list		*rooms;
 	t_flux		*paths;
 }				t_lemin;
@@ -80,6 +78,8 @@ void			parse_lemin(t_lemin *l);
 void			print_paths(t_lemin *l);
 char			*print_room(t_lemin *l, int i);
 void			send_ants(t_lemin *l);
+void			ek_free(t_ek *e);
+void			data_free(t_lemin *l);
 void			edmondskarp(t_lemin *l);
 void			save_flux(t_ek *ek, int start, t_path *p);
 t_flux			*addflux(t_ek *e, int len);

@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 11:55:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 12:32:11 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 13:57:56 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	gogogo(t_lemin *l, t_flux *f, int print)
 		l->flag = print_out(f->path, l, print);
 		f->round = l->flag ? f->round + 1 : f->round;
 	}
-	l->flux = f->round < l->round ? f : l->flux;
+	l->flux_to_print = f->round < l->round ? f : l->flux_to_print;
 	l->round = f->round < l->round ? f->round : l->round;
 }
 
@@ -104,5 +104,5 @@ void	send_ants(t_lemin *l)
 		gogogo(l, flux, 0);
 		flux = flux->next;
 	}
-	gogogo(l, l->flux, 1);
+	gogogo(l, l->flux_to_print, 1);
 }

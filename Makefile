@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/06 11:26:07 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/07 15:28:55 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRC =	lemin.c\
 		parser.c\
 		edmondskarp.c\
 		data_save.c\
-		flux.c
+		flux.c\
+		data_free.c
 
 OTHER = \
 

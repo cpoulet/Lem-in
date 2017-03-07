@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:49:24 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 12:24:52 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 15:28:19 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		init_lemin(t_lemin *l)
 	l->flag = 0;
 	l->room_nb = 0;
 	l->ants = 0;
-	l->flux = NULL;
+	l->flux_to_print = NULL;
 	l->round = ~(1 << 31);
 }
 
@@ -50,10 +50,20 @@ int			main(void)
 
 	init_lemin(&l);
 	parse_lemin(&l);
+	if (!l.start || !l.end || l.start == l.end
+				|| !l.flag || l.room_nb <= 1)
+	{
+		write(1, "ERROR\n", 6);
+		exit(1);
+	}
 	ft_printf("\n");
 	edmondskarp(&l);
 	if (!l.paths)
-		error("No valid paths !\n");
+	{
+		write(1, "ERROR\n", 6);
+		exit(1);
+	}
 	send_ants(&l);
+	data_free(&l);
 	return (0);
 }

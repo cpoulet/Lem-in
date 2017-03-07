@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:01:16 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 12:29:59 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 15:26:55 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int		bfs_ek(t_lemin *l, t_ek *ek)
 				if (v != l->end - 1)
 					enqueue_int(ek->queue, v);
 				else
+				{
+					free(u);
 					return (1);
+				}
 			}
 		}
 		free(u);
@@ -98,4 +101,5 @@ void	edmondskarp(t_lemin *l)
 		save_flux(&ek, l->start - 1, flux->path);
 	}
 	l->paths = ek.first;
+	ek_free(&ek);
 }

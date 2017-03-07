@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/06 16:30:53 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 14:52:16 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	fill_matrix(t_lemin *l, char *str, int n)
 	{
 		l->flag = 1;
 		l->matrix = ft_tabnew(l->room_nb, l->room_nb);
-		l->tab = ft_rangenew(l->room_nb);
 	}
 	if (!(i = find_lst(l, str, n)))
 		l->read = 0;
@@ -91,7 +90,11 @@ static void	parse_ants(t_lemin *l, char *str)
 	l->read = 2;
 	l->ants = ft_atoi_skip(&str);
 	if (l->ants <= 0 || *str)
-		error("ERROR_nb_ants");
+	{
+		free(str);
+		write(1, "ERROR\n", 6);
+		exit(1);
+	}
 	list_init(l->rooms, free);
 }
 
@@ -117,8 +120,7 @@ void		parse_lemin(t_lemin *l)
 			parse_room(l, line);
 		else
 			l->read = 0;
-		ft_strdel(&line);
+		free(line);
 	}
-	if (!l->start || !l->end || l->start == l->end || !l->flag)
-		error("ERROR_parsing");
+	free(line);
 }
