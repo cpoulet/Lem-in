@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:50:19 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 15:26:39 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 17:06:49 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
-# include <stdbool.h>
 # include "libft.h"
 # include "queue.h"
-
-# define ANT1(x) "\x1B[3"x"m \\ |/ \n>C@oO\n  /| \\ \n\x1B[0m"
-# define ANT2(x) "\x1B[3"x"m  \\| / \n>C@oO\n / |\\ \n\x1B[0m"
 
 typedef struct	s_room
 {

@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/07 15:36:49 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/07 17:53:44 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ SRC =	lemin.c\
 		edmondskarp.c\
 		data_save.c\
 		flux.c\
-		data_free.c
+		data_free.c\
 
-OTHER = \
+OTHER = srcs/hex.c\
 
 INC = includes/lemin.h
 OBJPATH = bin/
@@ -35,6 +35,10 @@ all : $(NAME)
 $(NAME) : lib $(OBJ)
 	@gcc $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
 	@echo "\x1B[1;31mCreation de la Fourmiliere...\x1B[0m"
+
+hex : lib
+	@gcc $(FLAGS) $(OTHER) $(LIBS) $(INCLUDES) -o visu-hex
+	@echo "\x1B[1;31mCreation de la Loupe...\x1B[0m"
 
 $(OBJPATH)%.o : %.c $(INC)
 	@if ! [ -d $(OBJPATH) ]; then mkdir $(OBJPATH); fi

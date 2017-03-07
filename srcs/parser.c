@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:29:43 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/07 16:12:48 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/07 17:55:58 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		parse_lemin(t_lemin *l)
 			parse_room(l, line);
 		else
 			l->read = 0;
-		free(line);
+		ft_strdel(&line);
 	}
-	free(line);
+	ft_strdel(&line);
 }
