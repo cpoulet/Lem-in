@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/07 17:53:44 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/08 12:10:29 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC =	lemin.c\
 		data_free.c\
 
 OTHER = srcs/hex.c\
+		srcs/ants.c
 
 INC = includes/lemin.h
 OBJPATH = bin/
@@ -27,7 +28,7 @@ VPATH = srcs/
 
 INCLUDES = -I includes/ -I libft/includes/
 LIBS = -L libft/ -lft
-PLS = -fsanitize=address
+PLS = -fsanitize=address 
 FLAGS = -Wall -Wextra -Werror $(PLS)
 
 all : $(NAME)
@@ -36,7 +37,7 @@ $(NAME) : lib $(OBJ)
 	@gcc $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
 	@echo "\x1B[1;31mCreation de la Fourmiliere...\x1B[0m"
 
-hex : lib
+hex : lib $(INC)
 	@gcc $(FLAGS) $(OTHER) $(LIBS) $(INCLUDES) -o visu-hex
 	@echo "\x1B[1;31mCreation de la Loupe...\x1B[0m"
 
