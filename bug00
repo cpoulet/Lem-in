@@ -1,0 +1,38 @@
+10
+##start
+qwer 23 3
+2 16 7
+#commentaire
+879 16 3
+3g..g 16 5
+v.[w 9 3
+toto 1 5
+7 4 8
+0 9 9
+##end
+END 9 5
+0-END
+v.[w-qwer
+v.[w-7
+879-3g..g
+qwer-2
+879-toto
+#autre commentaire
+0-toto
+3g..g-2
+
+L1-2 
+L2-2 L1-3g..g 
+L3-2 L2-3g..g L1-879 
+L4-2 L3-3g..g L2-879 L1-toto 
+L5-2 L4-3g..g L3-879 L2-toto L1-0 
+L6-2 L5-3g..g L4-879 L3-toto L2-0 L1-END 
+L7-2 L6-3g..g L5-879 L4-toto L3-0 L2-END 
+L8-2 L7-3g..g L6-879 L5-toto L4-0 L3-END 
+L9-2 L8-3g..g L7-879 L6-toto L5-0 L4-END 
+L10-2 L9-3g..g L8-879 L7-toto L6-0 L5-END 
+L10-3g..g L9-879 L8-toto L7-0 L6-END 
+L10-879 L9-toto L8-0 L7-END 
+L10-toto L9-0 L8-END 
+L10-0 L9-END 
+L10-END 

@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/08 12:10:29 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/09 19:41:08 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,12 @@ SRC =	lemin.c\
 		data_free.c\
 
 OTHER = srcs/hex.c\
-		srcs/ants.c
+		srcs/ants.c\
+		srcs/box_1.c\
+		srcs/box_2.c\
+		srcs/box_3.c\
+		srcs/print.c\
+		srcs/hex_parser.c
 
 INC = includes/lemin.h
 OBJPATH = bin/
