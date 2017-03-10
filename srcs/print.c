@@ -6,13 +6,13 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 19:18:14 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/09 19:27:26 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/10 14:01:56 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visuhex.h"
 
-void	print_start(t_hex *h)
+void	print_start(t_hex *h, int k)
 {
 	t_print p;
 
@@ -25,10 +25,10 @@ void	print_start(t_hex *h)
 	p.next = NULL;
 	p.ant = h->ant_nb - h->ant_max;
 	p.color = p.ant ? 8 : 0;
-	print_box(&p, 1);
+	print_box(&p, 1, k);
 }
 
-void	print_end(t_hex *h)
+void	print_end(t_hex *h, int k)
 {
 	t_print p;
 
@@ -41,7 +41,7 @@ void	print_end(t_hex *h)
 	p.next = NULL;
 	p.ant = h->ant_out;
 	p.color = p.ant ? 8 : 0;
-	print_box(&p, 1);
+	print_box(&p, 1, k);
 }
 
 t_print	*init_box(t_print *p, t_box *b)

@@ -6,7 +6,7 @@
 #    By: cpoulet <cpoulet@student.42.fr>                     \\_//)            #
 #                                                             \_/_)            #
 #    Created: 2017/01/22 14:13:52 by cpoulet                   _|_             #
-#    Updated: 2017/03/09 19:41:08 by cpoulet          ###   ########.fr        #
+#    Updated: 2017/03/10 13:54:17 by cpoulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OTHER = srcs/hex.c\
 		srcs/box_2.c\
 		srcs/box_3.c\
 		srcs/print.c\
+		srcs/print_ant.c\
 		srcs/hex_parser.c
 
 INC = includes/lemin.h

@@ -6,13 +6,13 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:48:30 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/09 18:50:06 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/10 13:59:14 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visuhex.h"
 
-void	print_line5(t_print *p, int nb)
+void	print_line5(t_print *p, int nb, int k)
 {
 	int i;
 
@@ -25,7 +25,7 @@ void	print_line5(t_print *p, int nb)
 		if (p->empty)
 			LINK;
 		else
-			LINE5(p->color);
+			print_ant5(p, k);
 		if (nb)
 			BLANK;
 		p = p->next;
@@ -33,7 +33,7 @@ void	print_line5(t_print *p, int nb)
 	NL;
 }
 
-void	print_line6(t_print *p, int nb)
+void	print_line6(t_print *p, int nb, int k)
 {
 	int i;
 
@@ -46,7 +46,7 @@ void	print_line6(t_print *p, int nb)
 		if (p->empty)
 			LINK;
 		else
-			LINE6(p->color);
+			print_ant6(p, k);
 		if (nb)
 			BLANK;
 		p = p->next;
@@ -54,7 +54,7 @@ void	print_line6(t_print *p, int nb)
 	NL;
 }
 
-void	print_line7(t_print *p, int nb)
+void	print_line7(t_print *p, int nb, int k)
 {
 	int i;
 
@@ -67,7 +67,7 @@ void	print_line7(t_print *p, int nb)
 		if (p->empty)
 			LINK;
 		else
-			LINE7(p->color);
+			print_ant7(p, k);
 		if (nb)
 			BLANK;
 		p = p->next;

@@ -6,7 +6,7 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:48:00 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/09 18:50:19 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/10 14:03:58 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_branch(t_hex *h)
 	NL;
 }
 
-void	print_box(t_print *p, int nb)
+void	print_box(t_print *p, int nb, int k)
 {
 	t_print *svg;
 
@@ -69,10 +69,10 @@ void	print_box(t_print *p, int nb)
 	print_line1(svg, nb);
 	print_line2(svg, nb);
 	print_line3(svg, nb);
-	print_line4(svg, nb);
-	print_line5(svg, nb);
-	print_line6(svg, nb);
-	print_line7(svg, nb);
+	print_line4(svg, nb, k);
+	print_line5(svg, nb, k);
+	print_line6(svg, nb, k);
+	print_line7(svg, nb, k);
 	print_line8(svg, nb);
 	if (p->type == 0)
 		print_link(nb);

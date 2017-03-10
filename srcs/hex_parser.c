@@ -6,13 +6,13 @@
 /*   By: cpoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:51:51 by cpoulet           #+#    #+#             */
-/*   Updated: 2017/03/09 19:16:39 by cpoulet          ###   ########.fr       */
+/*   Updated: 2017/03/10 14:53:43 by cpoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visuhex.h"
 
-t_box	*loop(t_box *b, t_hex *h)
+t_box	*loop(t_box *b, t_hex *h, int k)
 {
 	t_print *p;
 	int		i;
@@ -36,7 +36,7 @@ t_box	*loop(t_box *b, t_hex *h)
 		else
 			p = empty_box(p, b);
 	}
-	print_box(p, h->path_nb);
+	print_box(p, h->path_nb, k);
 	free_box(p);
 	return (b);
 }
@@ -44,18 +44,23 @@ t_box	*loop(t_box *b, t_hex *h)
 void	print_graph(t_hex *h)
 {
 	t_box	*b;
+	int		k;
 
-	b = h->box;
-	usleep(800000);
-	ft_printf(INIT);
-	print_start(h);
-	print_branch(h);
-	while (b)
-		b = loop(b, h);
-	if (h->ant_out)
+	k = -1;
+	while (++k < 8)
 	{
+		b = h->box;
+		usleep(100000);
+		ft_printf(INIT);
+		print_start(h, k);
 		print_branch(h);
-		print_end(h);
+		while (b)
+			b = loop(b, h, k);
+		if (h->ant_out)
+		{
+			print_branch(h);
+			print_end(h, k);
+		}
 	}
 }
 
